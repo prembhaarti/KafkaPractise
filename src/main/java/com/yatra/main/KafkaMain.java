@@ -11,16 +11,16 @@ import java.util.Arrays;
  */
 public class KafkaMain {
     public static void main(String[] args) throws Exception {
-        if(StringUtils.isEmpty(Arrays.toString(args))){
-           System.out.println("No arguement found");
-        }
-        else{
-           System.out.println(Arrays.toString(args));
-        }
-        SimpleProducer producer = new SimpleProducer();
-        producer.produce();
-        Thread.sleep(1000);
-        SimpleConsumer consumer= new SimpleConsumer();
-        consumer.consume();
+//        if(StringUtils.isEmpty(Arrays.toString(args))){
+//           System.out.println("No arguement found");
+//        }
+//        else{
+//           System.out.println(Arrays.toString(args));
+//        }
+//        SimpleProducer producer = new SimpleProducer();
+//        producer.produce();
+//        Thread.sleep(1000);
+//        SimpleConsumer consumer= new SimpleConsumer();
+//        consumer.consume();
     }
 }

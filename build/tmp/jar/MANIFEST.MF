@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: com.yatra.main.KafkaMain
 Built-by: prem.bharti
+Main-Class: com.yatra.KafkaApplication
 

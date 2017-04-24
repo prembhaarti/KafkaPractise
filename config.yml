@@ -1,0 +1,23 @@
+template: Hello, %s!
+defaultName: Stranger
+
+consumerConfig:
+  bootstrapServers: 127.0.0.1:9092
+  enableAutoCommit: true
+  groupId: group-1
+  autoCommitIntervalMs: 1000
+  autoOffsetReset: earliest
+  sessionTimeOutMs: 30000
+  keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+  valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+  pollTime: 1000
+
+producerConfig:
+  bootstrapServers: 127.0.0.1:9092
+  acknowledgment: all
+  retries: 0
+  batchSize: 16384
+  lingerMs: 1
+  bufferMemory: 33554432
+  keySerializer: org.apache.kafka.common.serialization.StringSerializer
+  valueSerializer: org.apache.kafka.common.serialization.StringSerializer
