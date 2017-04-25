@@ -21,3 +21,12 @@ producerConfig:
   bufferMemory: 33554432
   keySerializer: org.apache.kafka.common.serialization.StringSerializer
   valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+
+swagger:
+  resourcePackage: com.yatra.resource
+  title: Kafka Practise Api
+  version: 1.0
+  description: Api to check kafka functionalities
+  contact: prem.bharti@yatra.com
+  schemes:
+    - http

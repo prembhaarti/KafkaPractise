@@ -16,3 +16,6 @@ http://localhost:8081/threads
 
 # healthcheck
 http://localhost:8081/healthcheck
+
+# swagger
+http://localhost:8080/swagger

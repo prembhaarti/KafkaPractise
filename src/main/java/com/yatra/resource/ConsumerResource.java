@@ -3,6 +3,8 @@ package com.yatra.resource;
 import com.yatra.api.response.MessageResponse;
 import com.yatra.core.config.ConsumerConfiguration;
 import com.yatra.core.kafka.consumers.SimpleConsumer;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Path("consume/{topic}/{group}")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value= "consume/{topic}/{group}")
 public class ConsumerResource {
 
     private ConsumerConfiguration configuration;
@@ -27,6 +30,12 @@ public class ConsumerResource {
 
     @GET
     @Path("/message")
+    @ApiOperation(
+            value = "consumes messages from given topic",
+            tags = "Consumer",
+            notes = "consumes message from given topic and sets a consumer group",
+            response = MessageResponse.class
+    )
     public List<MessageResponse> consumeMessage(@PathParam("topic") String topic,
                                                 @PathParam("group") String group){
         return consumer.consume(configuration,topic,group);

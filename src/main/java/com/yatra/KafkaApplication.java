@@ -7,6 +7,8 @@ import com.yatra.health.TemplateHealthCheck;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 public class KafkaApplication extends Application<KafkaConfiguration> {
     public static void main(String[] args) throws Exception {
@@ -20,7 +22,8 @@ public class KafkaApplication extends Application<KafkaConfiguration> {
 
     @Override
     public void initialize(Bootstrap<KafkaConfiguration> bootstrap) {
-        // nothing to do yet
+        bootstrap.addBundle(createSwaggerBundle());
+
     }
 
     @Override
@@ -40,6 +43,15 @@ public class KafkaApplication extends Application<KafkaConfiguration> {
                 .builder()
                 .applicationModule(new ApplicationModule(configuration))
                 .build();
+    }
+
+    private SwaggerBundle<KafkaConfiguration> createSwaggerBundle(){
+        return new SwaggerBundle<KafkaConfiguration>() {
+            @Override
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(KafkaConfiguration configuration) {
+                return configuration.getSwaggerBundleConfiguration();
+            }
+        };
     }
 
 }

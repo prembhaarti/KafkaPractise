@@ -10,10 +10,8 @@ import javax.inject.Singleton;
 @Component(modules = { ApplicationModule.class })
 public interface ApplicationComponent {
 
-
     ProducerResource producerResource();
     ConsumerResource consumerResource();
-
 
     @Component.Builder
     interface Builder {
