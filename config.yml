@@ -1,4 +1,4 @@
-template: Hello, %s!
+healthCheckChunk: Hello, %s!
 defaultName: Stranger
 
 consumerConfig:

@@ -1,7 +1,7 @@
 package com.yatra.resource;
 
-import com.yatra.api.pojo.MessageResponse;
-import com.yatra.consumers.SimpleConsumer;
+import com.yatra.api.response.MessageResponse;
+import com.yatra.core.kafka.consumers.SimpleConsumer;
 import com.yatra.core.config.ConsumerConfiguration;
 
 import javax.ws.rs.GET;

@@ -1,9 +1,9 @@
 package com.yatra.resource;
 
-import com.yatra.api.pojo.Message;
+import com.yatra.api.request.Message;
 import com.yatra.api.response.PublishResponse;
 import com.yatra.core.config.ProducerConfiguration;
-import com.yatra.producers.SimpleProducer;
+import com.yatra.core.kafka.producers.SimpleProducer;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
