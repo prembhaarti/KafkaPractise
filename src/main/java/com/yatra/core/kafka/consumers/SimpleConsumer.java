@@ -6,12 +6,15 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
 public class SimpleConsumer {
+
+    public SimpleConsumer(){}
 
     public List<MessageResponse> consume(ConsumerConfiguration configuration,String topic,String group){
         Properties props = new Properties();

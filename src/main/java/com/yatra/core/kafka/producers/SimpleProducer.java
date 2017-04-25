@@ -11,6 +11,8 @@ import java.util.Properties;
 
 public class SimpleProducer {
 
+    public SimpleProducer(){}
+
     public PublishResponse produce(ProducerConfiguration configuration, Message message){
         Properties props = new Properties();
         props.put("bootstrap.servers", configuration.getBootstrapServers());

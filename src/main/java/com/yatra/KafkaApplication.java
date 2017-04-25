@@ -1,8 +1,9 @@
 package com.yatra;
 
+import com.yatra.core.dagger.ApplicationComponent;
+import com.yatra.core.dagger.ApplicationModule;
+import com.yatra.core.dagger.DaggerApplicationComponent;
 import com.yatra.health.TemplateHealthCheck;
-import com.yatra.resource.ConsumerResource;
-import com.yatra.resource.ProducerResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -25,12 +26,20 @@ public class KafkaApplication extends Application<KafkaConfiguration> {
     @Override
     public void run(KafkaConfiguration configuration,
                     Environment environment) {
-        final ProducerResource producerResource= new ProducerResource(configuration.getProducerConfiguration());
-        final ConsumerResource consumerResource= new ConsumerResource(configuration.getConsumerConfiguration());
+        ApplicationComponent component = getApplicationComponent(configuration);
+
         final TemplateHealthCheck healthCheck =
                 new TemplateHealthCheck(configuration.getHealthCheckChunk());
         environment.healthChecks().register("healthCheckChunk", healthCheck);
-        environment.jersey().register(producerResource);
-        environment.jersey().register(consumerResource);
+        environment.jersey().register(component.producerResource());
+        environment.jersey().register(component.consumerResource());
     }
+
+    private ApplicationComponent getApplicationComponent(KafkaConfiguration configuration) {
+        return DaggerApplicationComponent
+                .builder()
+                .applicationModule(new ApplicationModule(configuration))
+                .build();
+    }
+
 }

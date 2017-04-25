@@ -1,9 +1,10 @@
 package com.yatra.resource;
 
 import com.yatra.api.response.MessageResponse;
-import com.yatra.core.kafka.consumers.SimpleConsumer;
 import com.yatra.core.config.ConsumerConfiguration;
+import com.yatra.core.kafka.consumers.SimpleConsumer;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -16,8 +17,11 @@ import java.util.List;
 public class ConsumerResource {
 
     private ConsumerConfiguration configuration;
+    private SimpleConsumer consumer;
 
-    public ConsumerResource(ConsumerConfiguration configuration) {
+    @Inject
+    public ConsumerResource(SimpleConsumer consumer, ConsumerConfiguration configuration){
+        this.consumer=consumer;
         this.configuration=configuration;
     }
 
@@ -25,7 +29,6 @@ public class ConsumerResource {
     @Path("/message")
     public List<MessageResponse> consumeMessage(@PathParam("topic") String topic,
                                                 @PathParam("group") String group){
-        SimpleConsumer consumer= new SimpleConsumer();
         return consumer.consume(configuration,topic,group);
     }
 }
