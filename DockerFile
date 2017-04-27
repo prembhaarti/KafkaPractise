@@ -1,0 +1,9 @@
+# Dockerfile
+FROM java
+
+MAINTAINER prem.bharti@yatra.com
+ADD KafkaDemo-1.0-SNAPSHOT.jar /home/
+ADD config.yml /home/
+
+EXPOSE 8080
+EXPOSE 8081

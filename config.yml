@@ -1,6 +1,26 @@
 healthCheckChunk: Hello, %s!
 defaultName: Stranger
 
+server:
+  registerDefaultExceptionMappers: false
+  applicationContextPath: /kafka/v1/
+  adminContextPath: /
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+  requestLog:
+    timeZone: IST
+  gzip:
+    bufferSize: 100KiB
+  maxThreads: 1024
+  allowedMethods:
+    - GET
+    - PUT
+    - POST
+
 consumerConfig:
   bootstrapServers: 127.0.0.1:9092
   enableAutoCommit: true

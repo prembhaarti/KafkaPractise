@@ -34,8 +34,7 @@ public class KafkaApplication extends Application<KafkaConfiguration> {
         final TemplateHealthCheck healthCheck =
                 new TemplateHealthCheck(configuration.getHealthCheckChunk());
         environment.healthChecks().register("healthCheckChunk", healthCheck);
-        environment.jersey().register(component.producerResource());
-        environment.jersey().register(component.consumerResource());
+        registerJerseyResources(environment,component);
     }
 
     private ApplicationComponent getApplicationComponent(KafkaConfiguration configuration) {
@@ -43,6 +42,11 @@ public class KafkaApplication extends Application<KafkaConfiguration> {
                 .builder()
                 .applicationModule(new ApplicationModule(configuration))
                 .build();
+    }
+
+    private void registerJerseyResources(Environment environment, ApplicationComponent component){
+        environment.jersey().register(component.producerResource());
+        environment.jersey().register(component.consumerResource());
     }
 
     private SwaggerBundle<KafkaConfiguration> createSwaggerBundle(){
