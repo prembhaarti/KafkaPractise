@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -44,4 +46,5 @@ public class ConsumerConfiguration {
     @NotNull
     @JsonProperty
     private Integer pollTime;
+
 }

@@ -3,7 +3,9 @@ package com.yatra.core.dagger;
 import com.yatra.core.config.ConsumerConfiguration;
 import com.yatra.core.config.ProducerConfiguration;
 import com.yatra.core.kafka.consumers.SimpleConsumer;
+import com.yatra.core.kafka.consumers.SimpleConsumer_Factory;
 import com.yatra.core.kafka.producers.SimpleProducer;
+import com.yatra.core.kafka.producers.SimpleProducer_Factory;
 import com.yatra.resource.ConsumerResource;
 import com.yatra.resource.ConsumerResource_Factory;
 import com.yatra.resource.ProducerResource;
@@ -18,13 +20,13 @@ import javax.inject.Provider;
   comments = "https://google.github.io/dagger"
 )
 public final class DaggerApplicationComponent implements ApplicationComponent {
-  private Provider<SimpleProducer> provideProducerProvider;
+  private Provider<SimpleProducer> simpleProducerProvider;
 
   private Provider<ProducerConfiguration> provideProducerConfigurationProvider;
 
   private Provider<ProducerResource> producerResourceProvider;
 
-  private Provider<SimpleConsumer> provideConsumerProvider;
+  private Provider<SimpleConsumer> simpleConsumerProvider;
 
   private Provider<ConsumerConfiguration> provideConsumerConfigurationProvider;
 
@@ -42,9 +44,7 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
   @SuppressWarnings("unchecked")
   private void initialize(final Builder builder) {
 
-    this.provideProducerProvider =
-        DoubleCheck.provider(
-            ApplicationModule_ProvideProducerFactory.create(builder.applicationModule));
+    this.simpleProducerProvider = DoubleCheck.provider(SimpleProducer_Factory.create());
 
     this.provideProducerConfigurationProvider =
         DoubleCheck.provider(
@@ -53,11 +53,9 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
 
     this.producerResourceProvider =
         ProducerResource_Factory.create(
-            provideProducerProvider, provideProducerConfigurationProvider);
+            simpleProducerProvider, provideProducerConfigurationProvider);
 
-    this.provideConsumerProvider =
-        DoubleCheck.provider(
-            ApplicationModule_ProvideConsumerFactory.create(builder.applicationModule));
+    this.simpleConsumerProvider = DoubleCheck.provider(SimpleConsumer_Factory.create());
 
     this.provideConsumerConfigurationProvider =
         DoubleCheck.provider(
@@ -66,7 +64,7 @@ public final class DaggerApplicationComponent implements ApplicationComponent {
 
     this.consumerResourceProvider =
         ConsumerResource_Factory.create(
-            provideConsumerProvider, provideConsumerConfigurationProvider);
+            simpleConsumerProvider, provideConsumerConfigurationProvider);
   }
 
   @Override

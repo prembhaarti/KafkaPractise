@@ -3,6 +3,8 @@ package com.yatra.core.config;
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.validation.constraints.NotNull;
 
 @Getter

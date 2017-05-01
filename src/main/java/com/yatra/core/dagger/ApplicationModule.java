@@ -32,16 +32,5 @@ public class ApplicationModule {
         return configuration.getProducerConfiguration();
     }
 
-    @Provides
-    @Singleton
-    SimpleProducer provideProducer(){
-        return new SimpleProducer();
-    }
-
-    @Provides
-    @Singleton
-    SimpleConsumer provideConsumer(){
-        return new SimpleConsumer();
-    }
 
 }

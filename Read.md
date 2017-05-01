@@ -37,8 +37,16 @@ sudo docker run -p 8080:8080 -p 8081:8081 -it --rm java
 
 # tag dockerFile
 sudo docker tag <image-id> <dockerhub-username>/<dockerhub-repository-name>:<tag-name>
-sudo docker tag 6809f2395220 lovebharti/practise:kafkaDockerized
+sudo docker tag 6809f2395220 lovebharti/practise:kafka-practise
 
 # push docker image
 sudo docker push <dockerhub-username>/<dockerhub-repository-name>
 sudo docker push lovebharti/practise
+
+# pulling docker images from repository
+sudo docker pull <dockerhub-username>/<dockerhub-repository-name>:<tag-name>
+sudo docker pull lovebharti/practise:kafka-practise
+
+
+# Some more examples to learn
+https://github.com/LearningJournal/ApacheKafkaTutorials/
