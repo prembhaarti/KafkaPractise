@@ -1,0 +1,31 @@
+-- check health
+echo ruok | nc 127.0.0.1 2181
+
+--create a topic
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 2 --topic demo
+
+--compression-codec snappy
+--batch-size 1000
+
+
+bin/kafka-server-start.sh config/server.properties
+
+-- list topics
+bin/kafka-topics.sh --zookeeper localhost:2181/kafka --list
+
+-- describe
+bin/kafka-topics.sh --zookeeper localhost:2181/kafka --topic demo --describe
+
+ls /kafka/brokers/topics/demo/partitions/0/state
+
+-- console producer
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic demo22
+
+getting data via consumer group
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic demo --group demo-group-1
+
+
+watching data from log dump
+bin/kafka-dump-log.sh --files ~/kafka/demo-0/00000000000000000000.log --print-data-log
+
+bin/kafka-topics.sh --zookeeper localhost:2181/kafka --describe --unavailable-partitions
